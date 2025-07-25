@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Categories | 4AM Blog{% endblock %}
+
+{% block content %}
+<div class="flex flex-col lg:flex-row max-w-6xl mx-auto mt-6 bg-white shadow rounded-lg overflow-hidden">
+
+  <!-- Sidebar -->
+  {% include "dashboard/sidebar.html" %}
+
+  <!-- Main Content -->
+  <main class="flex-1 p-4 overflow-x-auto">
+    <h1 class="text-2xl font-bold mb-4 text-gray-800 border-b pb-2">📂 All Categories</h1>
+
+    {% if categories %}
+    <div class="overflow-x-auto">
+      <table class="table-auto min-w-full divide-y divide-gray-300 text-sm">
+        <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
+          <tr>
+            <th class="px-4 py-2 text-left whitespace-nowrap">S.No.</th>
+            <th class="px-4 py-2 text-left whitespace-nowrap">Category Name</th>
+            <th class="px-4 py-2 text-left whitespace-nowrap">Created At</th>
+            <th class="px-4 py-2 text-left whitespace-nowrap">Updated At</th>
+            <th class="px-4 py-2 text-left whitespace-nowrap">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700 divide-y divide-gray-200">
+          {% for cat in categories %}
+          <tr class="hover:bg-gray-50">
+            <td class="px-4 py-2">{{ forloop.counter }}</td>
+            <td class="px-4 py-2">{{ cat.category_name }}</td>
+            <td class="px-4 py-2">{{ cat.created_at|date:"Y-m-d" }}</td>
+            <td class="px-4 py-2">{{ cat.updated_at|date:"Y-m-d H:i" }}</td>
+            <td class="px-4 py-2 space-x-2">
+              <a href="" class="text-blue-600 hover:underline">Edit</a>
+              <a href="" class="text-red-600 hover:underline">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+      <p class="text-gray-500">No categories found.</p>
+    {% endif %}
+  </main>
+
+</div>
+{% endblock %}

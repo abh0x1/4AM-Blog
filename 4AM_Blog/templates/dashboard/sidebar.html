@@ -1,0 +1,8 @@
+<aside class="w-full lg:w-64 bg-gray-100 border-r border-gray-300 p-4 space-y-3 min-h-[100px]">
+  <h2 class="text-xl font-semibold mb-2">Menu</h2>
+  <a href="#" class="block px-3 py-2 rounded hover:bg-yellow-300 {% if request.path == '#' %}bg-yellow-400 text-black{% endif %}">👤 Hello... {{user}}</a>
+  <a href="{% url 'dashboard' %}" class="block px-3 py-2 rounded hover:bg-yellow-300 {% if request.path == '/dashboard/' %}bg-yellow-400 text-black{% endif %}">🏠 Dashboard</a>
+  <a href="{% url 'categories' %}" class="block px-3 py-2 rounded hover:bg-yellow-300 {% if request.path == '/dashboard/categories/' %}bg-yellow-400 text-black{% endif %}">📂 Categories</a>
+  <a href="#" class="block px-3 py-2 rounded hover:bg-yellow-300">📄 Posts</a>
+  <a href="{% url 'logout' %}" class="block px-3 py-2 rounded hover:bg-yellow-300 text-red-600">🚪 Logout</a>
+</aside>

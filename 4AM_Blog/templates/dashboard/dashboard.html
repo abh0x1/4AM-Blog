@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | 4AM Blog{% endblock %}
+
+{% block content %}
+<div class="flex flex-col lg:flex-row max-w-6xl mx-auto mt-6 bg-white shadow rounded-lg overflow-hidden min-h-[80vh]">
+
+  <!-- Sidebar -->
+  {% include "dashboard/sidebar.html" %}
+
+  <!-- Main Content -->
+  <main class="flex-1 p-6 overflow-y-auto">
+    <h1 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">🏠 Dashboard</h1>
+
+    <!-- Welcome Message -->
+    <p class="mb-6 text-gray-600">Welcome back, <strong>{{ user }}</strong>!</p>
+
+    <!-- Dashboard Stats -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="bg-yellow-100 p-6 rounded-lg shadow flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-semibold text-yellow-800">Total Categories</h2>
+          <p class="text-3xl font-bold text-yellow-900 mt-2">{{ category_count }}</p>
+        </div>
+        <div class="text-yellow-600 text-4xl">
+          <i class="fas fa-folder-open"></i>
+        </div>
+      </div>
+
+      <div class="bg-blue-100 p-6 rounded-lg shadow flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-semibold text-blue-800">Total Posts</h2>
+          <p class="text-3xl font-bold text-blue-900 mt-2">{{ blogs_count }}</p>
+        </div>
+        <div class="text-blue-600 text-4xl">
+          <i class="fas fa-newspaper"></i>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+{% endblock %}

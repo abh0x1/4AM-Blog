@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="py-12 bg-gray-100 flex justify-center">
+  <div class="max-w-md w-full bg-white p-8 rounded rounded-2xl shadow-md">
+    <h2 class="text-2xl font-bold text-center mb-6">Login to Your Account</h2>
+
+    <form action="{% url 'login' %}" method="POST" novalidate>
+      {% csrf_token %}
+      {{ form|crispy }}
+
+      <button type="submit"
+              class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded mt-4">
+        Login
+      </button>
+    </form>
+
+    <p class="mt-4 text-center text-sm">
+      Don't have an account?
+      <a href="{% url 'register' %}" class="text-blue-600 hover:underline">Register here</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

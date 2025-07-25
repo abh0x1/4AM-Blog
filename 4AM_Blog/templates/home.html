@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home | 4AM Blog{% endblock %}
+
+{% block content %}
+
+
+<!-- Hero Section -->
+{% for post in featured_posts %}
+  {% if forloop.first %}
+  <section class="max-w-4xl mx-auto px-4 mt-6">
+    <div class="relative rounded-lg overflow-hidden h-64 md:h-80">
+      <img src="{{ post.featured_image.url }}" alt="{{ post.title }}"
+           class="absolute inset-0 w-full h-full object-cover brightness-50" />
+      <div class="relative z-10 text-white p-6 h-full flex flex-col justify-center">
+        <h2 class="text-3xl font-semibold mb-2">{{ post.title }}</h2>
+        <p class="mb-3">{{ post.short_description }}</p>
+        <a href="{% url 'blogs' post.slug %}" class="font-bold hover:text-yellow-300">Continue reading...</a>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+{% endfor %}
+
+<!-- Featured Posts -->
+<section class="max-w-4xl mx-auto px-4 mt-10 grid gap-4 md:grid-cols-2">
+  <div class="md:col-span-2 mb-4">
+    <h2 class="text-2xl font-bold text-gray-600 uppercase text-center">Featured Posts</h2>
+  </div>
+
+  {% for post in featured_posts %}
+    {% if not forloop.first %}
+    <div class="border p-4 rounded shadow-sm">
+      <h3 class="text-xl font-semibold mb-1">{{ post.title }}</h3>
+      <p class="text-sm text-gray-500">{{ post.created_at|timesince }} ago | {{ post.author }}</p>
+      <p class="mt-2 text-gray-700">{{ post.short_description|truncatewords:10 }}</p>
+    </div>
+    {% endif %}
+  {% endfor %}
+</section>
+
+<!-- Recent Posts -->
+{% for post in posts %}
+<section class="max-w-4xl mx-auto px-4 mt-10">
+  <div class="md:col-span-2 mb-4">
+    <h2 class="text-2xl font-bold text-gray-600 uppercase text-center">Recent Posts</h2>
+  </div>
+
+  <div class="sample_blog_post border p-6 rounded shadow-sm">
+    <h2 class="text-2xl font-bold mb-2">{{ post.title }}</h2>
+    <p class="text-sm text-gray-500 mb-1">
+      Published on {{ post.created_at|date:"F j, Y" }} | {{ post.created_at|time:"H:i A" }} IST
+    </p>
+    <p class="text-sm text-gray-500 mb-4">
+      Location: {{ post.author.profile.location|default:"Unknown" }} |
+      Author: {{ post.author|default:post.author }}
+    </p>
+    <p class="font-bold leading-relaxed">
+      {{ post.short_description|truncatewords:10 }}
+    </p>
+    <p class="text-gray-700 leading-relaxed">
+      {{ post.blog_body|truncatewords:30 }}
+    </p>
+  </div>
+</section>
+{% endfor %}
+
+<!-- About and Follow Us Section -->
+<section class="max-w-4xl mx-auto px-4 mt-16 grid md:grid-cols-2 gap-10 border-t border-gray-300 pt-10">
+  <!-- About -->
+  <div>
+    <h3 class="text-2xl font-semibold mb-4">{{ about.about_heading }}</h3>
+    <p class="text-gray-700">
+      {{ about.about_description }}
+    </p>
+  </div>
+
+  <!-- Follow Us -->
+  <div>
+    <h3 class="text-2xl font-semibold mb-4">Follow Us</h3>
+    {% if social_links %}
+    <div class="flex space-x-6 text-3xl text-gray-600">
+      {% for i in social_links %}
+      <a href="https://twitter.com/yourprofile" target="_blank" class="hover:text-blue-500"><i class="fab fa-twitter"></i></a>
+      <a href="https://facebook.com/yourprofile" target="_blank" class="hover:text-blue-700"><i class="fab fa-facebook"></i></a>
+      <a href="https://instagram.com/yourprofile" target="_blank" class="hover:text-pink-600"><i class="fab fa-instagram"></i></a>
+      <a href="{{ i.link }}" target="_blank" class="hover:text-blue-800"><i class="fab fa-linkedin"></i></a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

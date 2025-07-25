@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Search Results - 4AM Blog{% endblock %}
+
+{% block content %}
+<main class="max-w-4xl mx-auto px-4 py-8">
+  <h2 class="text-xl font-semibold mb-4">
+    Search Results for: <span class="text-yellow-500">{{ request.GET.keyword }}</span>
+  </h2>
+
+  {% if blogs %}
+    <ul class="space-y-4">
+      {% for blog in blogs %}
+        <li class="bg-white p-4 rounded shadow hover:shadow-md transition">
+          <a href="{% url 'blogs' slug=blog.slug %}" class="text-lg font-bold text-yellow-500 hover:underline">
+            {{ blog.title }}
+          </a>
+          <p class="text-sm text-gray-600 mt-1">{{ blog.created_at|date:"F d, Y" }}</p>
+            <p class="text-gray-700 mt-2">
+              {{ blog.short_description|default:blog.blog_body|truncatechars:150 }}
+            </p>
+
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-gray-600">No blogs found matching your search.</p>
+  {% endif %}
+</main>
+{% endblock %}
