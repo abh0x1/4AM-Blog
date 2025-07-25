@@ -18,6 +18,19 @@ Welcome to the 4AM Blog — a clean, dynamic blogging web application built with
 
 ---
 
+## 🧪 Demo Credentials
+
+**User Login:**  
+👤 ID: `demo`  
+🔐 Password: `demo12345`
+
+**Admin Login:**  
+👑 ID: `djangoadmin`  
+🔐 Password: `admin12345`  
+URL: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+
+---
+
 ## 📸 Screenshots
 
 ### 🏠 Home Page  
@@ -95,37 +108,6 @@ Visit: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ---
 
-## 🧠 Project Structure
-
-```
-4am_blog/
-├── manage.py
-├── db.sqlite3
-├── requirements.txt
-├── screenshots/
-│   ├── home.png
-│   ├── login.png
-│   ├── register.png
-│   ├── dashboard.png
-│   └── search.png
-├── templates/
-│   └── ...
-├── media/
-│   └── blog_uploads/
-├── blogs/
-│   ├── views.py
-│   ├── models.py
-│   ├── urls.py
-│   └── ...
-├── dashboards/
-│   └── ...
-└── 4am_blog/
-    ├── settings.py
-    └── urls.py
-```
-
----
-
 ## 🧾 License
 
 This project is licensed under the **MIT License** – feel free to use and modify.
@@ -139,8 +121,5 @@ GitHub: [@abh0x1](https://github.com/abh0x1)
 
 ```
 
-Let me know if you want to:
-- Auto-generate the screenshots folder
-- Add deployment instructions
-- Add optional Tailwind CSS integration in the readme
+Let me know if you want a `live demo link`, `.env template`, or `deployment to Render/Heroku` instructions added too.
 ```
